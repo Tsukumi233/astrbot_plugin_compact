@@ -1,7 +1,7 @@
 name: astrbot_plugin_compact
 display_name: 手动压缩上下文
 desc: 使用 /compact 立即调用 AstrBot 内置摘要压缩器，沿用当前配置文件的压缩模型、提示词和近期保留比例，保留自动压缩。支持会话锁、重复请求保护和失败保留历史。
-version: 1.0.0
+version: 1.0.1
 author: Tsukumi233
 repo: https://github.com/Tsukumi233/astrbot_plugin_compact
 astrbot_version: ">=4.29.0,<4.30.0"

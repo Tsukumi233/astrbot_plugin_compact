@@ -31,6 +31,7 @@ class CompactPlugin(Star):
             return
         self._pending.add(umo)
         try:
+            await event.send(event.plain_result("开始压缩"))
             # Include lock waiting in the timeout. Never interrupt another reply.
             async with asyncio.timeout(180):
                 async with session_lock_manager.acquire_lock(umo):

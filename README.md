@@ -16,6 +16,7 @@ https://github.com/Tsukumi233/astrbot_plugin_compact
 
 ## 行为
 
+- 接受 `/compact` 后立即回复“开始压缩”，再等待会话锁和模型处理，结束后另行回复结果。重复请求仍只提示已有任务；未通过权限检查的请求不会发送开始提示。
 - 读取当前会话路由对应的 `agent_runner.config.compression`。
 - 优先使用配置的压缩 Provider，留空使用当前会话聊天 Provider；沿用压缩提示词及近期保留比例。
 - 调用内置压缩器，生成摘要并保留近期完整轮次及其 checkpoint；成功后通过 ConversationManager 保存。

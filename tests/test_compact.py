@@ -158,6 +158,7 @@ class CompactTests(unittest.IsolatedAsyncioTestCase):
             unified_msg_origin="session",
             should_call_llm=Mock(),
             plain_result=lambda text: text,
+            send=AsyncMock(),
         )
 
         async def run():
@@ -200,6 +201,7 @@ class CompactTests(unittest.IsolatedAsyncioTestCase):
             unified_msg_origin="session",
             should_call_llm=Mock(),
             plain_result=lambda text: text,
+            send=AsyncMock(),
         )
 
         async def run():
@@ -208,9 +210,11 @@ class CompactTests(unittest.IsolatedAsyncioTestCase):
         async with session_lock_manager.acquire_lock("session"):
             task = asyncio.create_task(run())
             await asyncio.sleep(0)
+            event.send.assert_awaited_once_with("开始压缩")
             self.provider.text_chat.assert_not_awaited()
             duplicate = await run()
             self.assertIn("已有压缩任务", duplicate[0])
+            event.send.assert_awaited_once_with("开始压缩")
         result = await task
         self.assertIn("已压缩", result[0])
         self.assertFalse(self.plugin._pending)
