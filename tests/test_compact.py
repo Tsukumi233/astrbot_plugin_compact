@@ -6,6 +6,7 @@ from types import SimpleNamespace
 from unittest.mock import AsyncMock, Mock
 
 from astrbot.core.utils.session_lock import session_lock_manager
+
 from main import CompactPlugin
 
 
